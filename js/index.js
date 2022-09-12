@@ -15,61 +15,42 @@
 // logout - метод, который имитирует логаут пользователя, меняя переменную isLoggedIn
 // login - метод, который имитирует логин пользователя, меняя переменную isLoggedIn
 
-const peopleProto = {
+
+const onlineProto = {
+  isLoggedIn: false,
+  login: function () {
+    console.log('user is online now');
+  },
+}
+
+const offlineProto = {
   logout: function () {
     console.log('user is offline now');
   },
 };
 
+offlineProto.__proto__ = onlineProto;
+
 const userProto = {
-  isOnline: false,
   getFullName: function () {
     console.log(`${this.firstName} ${this.lastName}`);
   }
 }
 
-userProto.__proto__ = peopleProto;
+userProto.__proto__ = offlineProto;
 
-function User (firstName, lastName, email, age, isOnline) {
+function User (firstName, lastName, email, age, isLoggedIn) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.email = email;
   this.age = age;
-  this.isOnline = isOnline;
+  this.isLoggedIn = isLoggedIn;
 }
 
+const user1 = new User('Name', 'Last Name', 'Email', '30');
+const user2 = new User('NAME', 'LAST NAME', 'EMAIL', '50');
 
-const user1 =  {
-  firstName: 'Name',
-  lastName: 'Last Name',
-  email: 'emai',
-  age: 30,
-};
-
-const user2 = {
-  firstName: 'NAME',
-  lastName: 'LAST NAME',
-  email: 'EMAIL',
-  age: 50,
-}
-
-user1.__proto__= userProto;
-user2.__proto__ = userProto;
-
-
-// function User (firstName, lastName, email, age, isLoggedIn, fullName) {
-//   this.firstName = firstName;
-//   this.lastName = lastName;
-//   this.email = email;
-//   this.age = age;
-//   this.isLoggedIn = isLoggedIn
-//   this.fullName = function() {
-//     console.log(firstName, lastName);
-//   }
-// }
-
-// const user1 = new User('Name', 'Last Name', 'Email', '30');
-// const user2 = new User('NAME', 'LAST NAME', 'EMAIL', '50');
+User.prototype = userProto;
 
 
 // const user1 =  {
@@ -82,25 +63,25 @@ user2.__proto__ = userProto;
 // const user2 = {
 //   firstName: 'NAME',
 //   lastName: 'LAST NAME',
-
-// }
-
-// const userProto = {
-//   fullName: function () {
-//     console.log(`${firstName} ${lastName}`);
-//   }
+//   email: 'EMAIL',
+//   age: 50,
 // }
 
 // user1.__proto__= userProto;
 // user2.__proto__ = userProto;
 
-// User.prototype = userProto;
 
-// const onlineProto = {
-//   isUserOnline: function (isOnline) {
-//     console.log(`${this.firstName} ${this.lastName} is ${isOnline}`);
-//   },
-// }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
